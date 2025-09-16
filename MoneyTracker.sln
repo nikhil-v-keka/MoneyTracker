@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTracker", "MoneyTracker\MoneyTracker.csproj", "{8D5FD2D1-8643-4102-850E-077A8054BB25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D5FD2D1-8643-4102-850E-077A8054BB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5FD2D1-8643-4102-850E-077A8054BB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5FD2D1-8643-4102-850E-077A8054BB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5FD2D1-8643-4102-850E-077A8054BB25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67F2CB85-96E2-45CD-8F93-55BC8A1538B4}
+	EndGlobalSection
+EndGlobal
