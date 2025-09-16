@@ -50,7 +50,7 @@ namespace MoneyTracker.Repositories
 
         }
 
-        public async void DeleteTransaction(int id)
+        public async Task DeleteTransaction(int id)
         {
             var selectedExpense = _dbContext.Transactions.FirstOrDefault(e => e.Id == id);
             if(selectedExpense == null)

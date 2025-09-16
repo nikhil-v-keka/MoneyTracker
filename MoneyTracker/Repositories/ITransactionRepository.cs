@@ -12,6 +12,6 @@ namespace MoneyTracker.Repositories
 
         public Task<Transaction> UpdateTransaction (Transaction expense);
 
-        public void DeleteTransaction (int id);
+        public Task DeleteTransaction (int id);
     }
 }

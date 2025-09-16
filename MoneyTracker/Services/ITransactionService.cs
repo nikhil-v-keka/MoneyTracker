@@ -1,17 +1,18 @@
-﻿using MoneyTracker.Models;
+﻿using MoneyTracker.DTOs;
+using MoneyTracker.Models;
 
 namespace MoneyTracker.Services
 {
     public interface ITransactionService
     {
-        public Task<IEnumerable<Transaction>> GetAllExpenses();
+        public Task<IEnumerable<TransactionDto>> GetAllTransactions();
 
-        public Task<Transaction> GetExpense(int id);
+        public Task<TransactionDto> GetTransaction(int id);
 
-        public Task<Transaction> AddExpense(Transaction expense);
+        public Task<TransactionDto> AddTransaction(TransactionCreateDto Transaction);
 
-        public Task<Transaction> UpdateExpense(Transaction expense);
+        public Task<TransactionDto> UpdateTransaction(TransactionDto Transaction);
 
-        public void DeleteExpense(int id);
+        public void DeleteTransaction(int id);
     }
 }

@@ -1,4 +1,6 @@
-﻿using MoneyTracker.Models;
+﻿using AutoMapper;
+using MoneyTracker.DTOs;
+using MoneyTracker.Models;
 using MoneyTracker.Repositories;
 
 namespace MoneyTracker.Services
@@ -6,34 +8,42 @@ namespace MoneyTracker.Services
     public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository _transactionRepository;
-        public TransactionService(ITransactionRepository trasactionRepository)
+        private readonly IMapper _mapper;
+        public TransactionService(ITransactionRepository trasactionRepository, IMapper mapper)
         { 
             _transactionRepository = trasactionRepository;
+            _mapper = mapper;
         }
 
-        public Task<Transaction> AddExpense(Transaction expense)
+        public async Task<TransactionDto> AddTransaction(TransactionCreateDto transaction)
         {
-            throw new NotImplementedException();
+            var transactionToAdd = _mapper.Map<Transaction>(transaction);
+            var newTransaction = await _transactionRepository.AddTransaction(transactionToAdd);
+            return _mapper.Map<TransactionDto>(newTransaction);
         }
 
-        public void DeleteExpense(int id)
+        public void DeleteTransaction(int id)
         {
-            throw new NotImplementedException();
+            _transactionRepository.DeleteTransaction(id); 
         }
 
-        public Task<IEnumerable<Transaction>> GetAllExpenses()
+        public async Task<IEnumerable<TransactionDto>> GetAllTransactions()
         {
-            throw new NotImplementedException();
+            var allTransactions = await _transactionRepository.GetAllTransactions();
+            return _mapper.Map<IEnumerable<TransactionDto>>(allTransactions);
         }
 
-        public Task<Transaction> GetExpense(int id)
+        public async Task<TransactionDto> GetTransaction(int id)
         {
-            throw new NotImplementedException();
+            var transaction = await _transactionRepository.GetTransaction(id);
+            return _mapper.Map<TransactionDto>(transaction);
         }
 
-        public Task<Transaction> UpdateExpense(Transaction expense)
+        public async Task<TransactionDto> UpdateTransaction(TransactionDto Transaction)
         {
-            throw new NotImplementedException();
+            var transactionToUpdate = _mapper.Map<Transaction>(Transaction);
+            var updatedTrasaction = await _transactionRepository.UpdateTransaction(transactionToUpdate);
+            return _mapper.Map<TransactionDto>(updatedTrasaction);
         }
     }
 }

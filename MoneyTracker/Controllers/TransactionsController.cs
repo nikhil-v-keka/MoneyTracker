@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MoneyTracker.DTOs;
 using MoneyTracker.Models;
 using MoneyTracker.Repositories;
+using MoneyTracker.Services;
 
 namespace MoneyTracker.Controllers
 {
@@ -9,42 +11,42 @@ namespace MoneyTracker.Controllers
 
     public class TransactionsController : ControllerBase
     {
-        private readonly ITransactionRepository _transactionRepository;
-        public TransactionsController(ITransactionRepository expenseRepository)
+        private readonly ITransactionService _transactionService;
+        public TransactionsController(ITransactionService transactionService)
         {
-            _transactionRepository = expenseRepository;
+            _transactionService = transactionService;
         }
 
         [HttpGet("all")]
         public async Task<ActionResult> GetAllContacts()
         {
-            return Ok(await _transactionRepository.GetAllTransactions());
+            return Ok(await _transactionService.GetAllTransactions());
 
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Transaction>> GetExpenseById(int id)
+        public async Task<ActionResult<TransactionDto>> GetExpenseById(int id)
         {
-            var expense = await _transactionRepository.GetTransaction(id);
+            var expense = await _transactionService.GetTransaction(id);
             return Ok(expense);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Transaction>> AddExpense(Transaction expense)
+        public async Task<ActionResult<TransactionDto>> AddExpense(TransactionCreateDto expense)
         {
-            return await _transactionRepository.AddTransaction(expense);
+            return await _transactionService.AddTransaction(expense);
         }
 
         [HttpPut()]
-        public async Task<ActionResult<Transaction>> UpdateExpense(Transaction expense)
+        public async Task<ActionResult<TransactionDto>> UpdateExpense(TransactionDto expense)
         {
-            return await _transactionRepository.UpdateTransaction(expense);
+            return await _transactionService.UpdateTransaction(expense);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         public void DeleteExpense(int id)
         {
-            _transactionRepository.DeleteTransaction(id);
+            _transactionService.DeleteTransaction(id);
         }
 
     }
