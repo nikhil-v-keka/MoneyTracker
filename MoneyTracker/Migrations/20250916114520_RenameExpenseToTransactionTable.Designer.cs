@@ -11,8 +11,8 @@ using MoneyTracker.Data;
 namespace MoneyTracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250916093436_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250916114520_RenameExpenseToTransactionTable")]
+    partial class RenameExpenseToTransactionTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace MoneyTracker.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MoneyTracker.Models.Expense", b =>
+            modelBuilder.Entity("MoneyTracker.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,6 +33,7 @@ namespace MoneyTracker.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Description")
@@ -45,7 +46,7 @@ namespace MoneyTracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 #pragma warning restore 612, 618
         }
